@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# === 設定ここから（必要に応じて編集） ===============================
+
+# 保護したいブランチ（refs/heads/ を含む正規表現）
+PROTECTED_BRANCHES_REGEX='^(refs/heads/main)$'
+
+# 対象にするリモート名（origin だけに制限したい場合に使う）
+ALLOWED_REMOTES_REGEX='^(origin)$'
+
+# CI や緊急時にバイパスしたい場合: ALLOW_DIRECT_PUSH=1 git push ...
+BYPASS_ENV_VAR="${ALLOW_DIRECT_PUSH:-0}"
+
+# === 設定ここまで ====================================================
+
+remote_name="${1:-}"
+remote_url="${2:-}"
+
+# バイパス指定があるなら許可
+if [[ "$BYPASS_ENV_VAR" = "1" ]]; then
+  exit 0
+fi
+
+# リモート名が制限対象外ならチェックせず許可
+if [[ -n "$remote_name" && ! "$remote_name" =~ $ALLOWED_REMOTES_REGEX ]]; then
+  exit 0
+fi
+
+# pre-push は stdin で「local_ref local_sha remote_ref remote_sha」の行を複数受け取る
+# 例: refs/heads/feature_x 1234... refs/heads/feature_x abcd...
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # ブランチへの push 以外（タグ等）はスキップ
+  if [[ ! "$remote_ref" =~ ^refs/heads/ ]]; then
+    continue
+  fi
+
+  # 保護ブランチに一致したら拒否（削除 push も拒否）
+  if [[ "$remote_ref" =~ $PROTECTED_BRANCHES_REGEX ]]; then
+    branch="${remote_ref#refs/heads/}"
+    cat <<EOF
+❌ Push blocked: "$branch" は保護ブランチです。直接 push は禁止です。
+
+対応:
+  1) 新しいブランチにコミットして push
+  2) Pull Request を作成してレビュー＆マージ
+
+EOF
+    exit 1
+  fi
+done
+
+exit 0
