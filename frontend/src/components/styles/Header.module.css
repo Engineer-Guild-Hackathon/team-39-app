@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb; 
+  width: 100%;
+}
+
+.left, .right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* 32px */
+}
+
+.logo {
+  font-size: 1.75rem; /* 28px */
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 16px */
+}
+
+.navLink {
+  color: #555;
+  text-decoration: none;
+  font-size: 1rem; /* 16px */
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #000;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+  text-decoration: none;
+  color: #333;
+}
+
+.avatar {
+  border-radius: 50%; /* 円形に */
+  object-fit: cover;
+}
