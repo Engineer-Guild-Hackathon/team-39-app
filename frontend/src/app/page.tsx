@@ -39,7 +39,7 @@ export default function HomePage() {
   return (
     <main className={styles.main}>
       <div className={styles.content}>
-        <h1 className={styles.title}>開発解決策検索エンジン</h1>
+        <h1 className={styles.title}>IssuesDB</h1>
         
         <div className={styles.searchContainer}>
           <div className={styles.searchInputWrapper}>
