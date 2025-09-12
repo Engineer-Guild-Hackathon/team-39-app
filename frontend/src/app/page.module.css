@@ -39,37 +39,6 @@
   width: 100%;
 }
 
-.actionSection {
-  margin-bottom: 2rem;
-}
-
-.registerButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, #7E33E0 0%, #151875 100%);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1.125rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px 0 rgba(126, 51, 224, 0.3);
-  border: none;
-  cursor: pointer;
-}
-
-.registerButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px 0 rgba(126, 51, 224, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.registerButton:active {
-  transform: translateY(0);
-}
 
 @media (max-width: 768px) {
   .main {
@@ -84,9 +53,6 @@
     margin-bottom: 2rem;
   }
   
-  .actionSection {
-    margin-bottom: 1rem;
-  }
   
   .title {
     font-size: clamp(2.5rem, 8vw, 4rem);

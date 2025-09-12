@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { SearchForm, SearchFilters } from '@/components/SearchForm';
 import styles from './page.module.css';
@@ -35,12 +34,6 @@ export default function HomePage() {
           <SearchForm onSearch={handleSearch} />
         </div>
 
-        {/* アクションセクション */}
-        <div className={styles.actionSection}>
-          <Link href="/questions/new" className={styles.registerButton}>
-            ➕ 新しい問題を登録
-          </Link>
-        </div>
 
       </div>
     </main>

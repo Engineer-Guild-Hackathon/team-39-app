@@ -115,10 +115,10 @@ function SearchResultsContent() {
                 検索条件を調整するか、すべての問題を閲覧してください。
               </p>
               <button
-                onClick={() => router.push('/questions/new')}
+                onClick={() => router.push('/')}
                 className={styles.newProblemButton}
               >
-                新しい問題を登録
+                ホームに戻る
               </button>
             </div>
           </div>
