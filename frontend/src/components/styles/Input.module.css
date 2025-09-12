@@ -15,5 +15,6 @@
 .input:focus {
   outline: none; 
   border-color: #7C3AED; 
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2); 
+  background-color: #ffffff; /* 指示3. 背景色を白に指定 */
 }
