@@ -1,95 +1,79 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import React, { useState } from 'react';
+import { Button } from '@/components/Button';
+import { Input } from '@/components/Input';
+import { Select } from '@/components/Select';
+import styles from './page.module.css';
+
+// Selectコンポーネント用のダミーデータ
+const osOptions = [
+  { value: 'all', label: 'すべてのOS' },
+  { value: 'macos', label: 'macOS' },
+  { value: 'windows', label: 'Windows' },
+];
+
+const hardwareOptions = [
+  { value: 'all', label: 'すべてのハードウェア' },
+  { value: 'm1', label: 'MacBook Air M1' },
+  { value: 'm2', label: 'MacBook Pro M2' },
+];
+
+const langOptions = [
+  { value: 'all', label: 'すべての言語' },
+  { value: 'javascript', label: 'JavaScript' },
+  { value: 'typescript', label: 'TypeScript' },
+  { value: 'python', label: 'Python' },
+];
+
+export default function HomePage() {
+  // フォームの入力値を管理するための状態
+  const [keyword, setKeyword] = useState('');
+  const [selectedOs, setSelectedOs] = useState('all');
+  const [selectedHardware, setSelectedHardware] = useState('all');
+  const [selectedLang, setSelectedLang] = useState('all');
+  
+  // 詳細フィルターの表示・非表示を管理する状態
+  const [showFilters, setShowFilters] = useState(false);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <main className={styles.main}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>開発解決策検索エンジン</h1>
+        
+        <div className={styles.searchContainer}>
+          <div className={styles.searchInputWrapper}>
+            <Input 
+              type="text"
+              placeholder="問題、解決策、キーワードを検索..."
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
             />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+          </div>
+
+          <div className={styles.filterControls}>
+            <button 
+              onClick={() => setShowFilters(!showFilters)} 
+              className={styles.filterToggle}
+            >
+              ▼ 詳細フィルター
+            </button>
+            <Button>検索</Button>
+          </div>
+
+          {showFilters && (
+            <div className={styles.filters}>
+              <Select options={osOptions} value={selectedOs} onChange={(e) => setSelectedOs(e.target.value)} />
+              <Select options={hardwareOptions} value={selectedHardware} onChange={(e) => setSelectedHardware(e.target.value)} />
+              <Select options={langOptions} value={selectedLang} onChange={(e) => setSelectedLang(e.target.value)} />
+            </div>
+          )}
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className={styles.newProblemButtonWrapper}>
+          <Button>+ 新しい問題を登録</Button>
+        </div>
+      </div>
+    </main>
   );
 }

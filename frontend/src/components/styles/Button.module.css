@@ -1,0 +1,26 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 8px; 
+  border: none;
+  background-color: #7C3AED; 
+  color: white;
+  font-size: 16px;
+  font-weight: 600; 
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none; 
+}
+
+/* マウスが乗った時のスタイル */
+.button:hover:not(:disabled) {
+  background-color: #6D28D9; 
+}
+
+/* 非活性（disabled）の時のスタイル */
+.button:disabled {
+  background-color: #A78BFA; 
+  cursor: not-allowed;
+}
