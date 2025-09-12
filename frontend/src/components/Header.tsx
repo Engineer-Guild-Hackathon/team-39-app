@@ -22,7 +22,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.left}>
         <Link href="/" className={styles.logo}>
-          DevSolve
+          IssuesDB
         </Link> 
       </div>
       <div className={styles.right}>

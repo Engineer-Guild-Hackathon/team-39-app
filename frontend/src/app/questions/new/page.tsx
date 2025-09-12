@@ -1,6 +1,7 @@
 "use client"; // useStateを使うため
 
 import React, { useState } from 'react';
+import { Header } from '@/components/Header';
 import { Textarea } from '@/components/Textarea';
 import { Button } from '@/components/Button';
 
@@ -8,7 +9,9 @@ export default function NewProblemPage() {
   const [details, setDetails] = useState('');
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px' }}>
+    <>
+      <Header />
+      <div style={{ padding: '2rem', maxWidth: '600px' }}>
       <form>
         <label 
           htmlFor="problem-details" 
@@ -29,6 +32,7 @@ export default function NewProblemPage() {
           </Button>
         </div>
       </form>
-    </div>
+      </div>
+    </>
   );
 }
