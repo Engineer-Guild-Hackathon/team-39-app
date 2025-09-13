@@ -1,4 +1,3 @@
-import { Header } from '@/components/Header'; // Headerをインポート
 import './globals.css'
 
 export default function RootLayout({
@@ -9,7 +8,6 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Header /> {/* ここにHeaderを配置 */}
         <main>{children}</main>
       </body>
     </html>

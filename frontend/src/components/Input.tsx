@@ -4,12 +4,7 @@
 import React from 'react';
 import styles from './styles/Input.module.css';
 
-// Inputが受け取るプロパティの型を定義
-// HTMLの<input>が持つすべての属性をそのまま受け取れるように
-interface InputProps extends React.ComponentPropsWithoutRef<'input'> {
-}
-
-export const Input = ({ className, ...rest }: InputProps) => {
+export const Input = ({ className, ...rest }: React.ComponentPropsWithoutRef<'input'>) => {
   // 基本スタイルと、外から渡された追加スタイルを組み合わせる
   const inputClassName = `${styles.input} ${className || ''}`;
 
